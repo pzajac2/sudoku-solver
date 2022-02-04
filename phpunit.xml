@@ -1,0 +1,7 @@
+<phpunit bootstrap="vendor/autoload.php">
+    <testsuites>
+        <testsuite name="unit">
+            <directory phpVersion="8.1.0" phpVersionOperator=">=">test</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
