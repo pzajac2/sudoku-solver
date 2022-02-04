@@ -1,6 +1,8 @@
 {
     "name": "pzajac2/sudoku-solver",
-    "type": "project",
+    "description": "Library for solving sudoku puzzle",
+    "license": "MIT",
+    "type": "library",
     "authors": [
         {
             "name": "Piotr Zajac",
