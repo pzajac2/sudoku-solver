@@ -1,0 +1,11 @@
+{
+    "name": "pzajac2/sudoku-solver",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Piotr Zajac",
+            "email": "contact@iqstudio.pl"
+        }
+    ],
+    "require": {}
+}
