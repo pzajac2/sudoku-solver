@@ -34,7 +34,7 @@ class MatrixTest extends TestCase
         $matrix = new Matrix($cells);
     }
 
-    public function testConstructMatrixWithInvalidInstance()
+    public function testConstructMatrixWithInvalidInstanceOfCells()
     {
         $cells = [];
         for ($i = 0; $i < 81; ++$i) {
