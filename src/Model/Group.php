@@ -6,7 +6,7 @@ namespace SudokuSolver\Model;
 
 use Webmozart\Assert\Assert;
 
-class Group extends CellCollection
+class Group extends CellCollection implements CollectionOf9Cells
 {
     const SIZE = 3;
 
