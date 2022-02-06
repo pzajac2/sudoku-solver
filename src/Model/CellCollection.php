@@ -7,11 +7,13 @@ namespace SudokuSolver\Model;
 use SudokuSolver\Utility\ObjectUniqueness;
 use Webmozart\Assert\Assert;
 
-abstract class CellCollection
+abstract class CellCollection implements \Iterator
 {
     protected const TOTAL_ELEMENTS = 9;
 
     protected array $cells = [];
+
+    private $pointer = 0;
 
     public function __construct(array $cells = [])
     {
@@ -38,4 +40,31 @@ abstract class CellCollection
         Assert::range($index, 0, static::TOTAL_ELEMENTS - 1, 'Index must be between 0..' . (static::TOTAL_ELEMENTS - 1));
         return $this->cells[$index];
     }
+
+    public function current(): mixed
+    {
+        return $this->cells[$this->pointer];
+    }
+
+    public function next(): void
+    {
+        $this->pointer++;
+    }
+
+    public function key(): mixed
+    {
+        return $this->pointer;
+    }
+
+    public function valid(): bool
+    {
+        return $this->pointer >= 0 && $this->pointer < static::TOTAL_ELEMENTS;
+    }
+
+    public function rewind(): void
+    {
+        $this->pointer = 0;
+    }
+
+
 }

@@ -9,23 +9,59 @@ use SudokuSolver\Model\Matrix;
 class Solver
 {
     private Matrix $matrix;
+    private CellPredictionsCollection $cellPredictionsCollection;
 
     public function __construct(Matrix $matrix)
     {
         $this->matrix = $matrix;
-        $this->cellPredicitonsFactory = new CellPredictionsFactory();
+        $this->cellPredictionsCollection = new CellPredictionsCollection();
     }
 
     private function buildEmptyPredictionsMatrix()
     {
-        $this->cellPredicitonsFactory->reset();
-        for ($i=0;$i<81;++$i) {
-            $this->cellPredicitonsFactory->get($this->matrix->getCellByIndex($i));
+        $this->cellPredictionsCollection->reset();
+        for ($i = 0; $i < 81; ++$i) {
+            $this->cellPredictionsCollection->get($this->matrix->getCellByIndex($i));
         }
     }
 
-    public function getPossibilitiesForMatrix()
+    public function buildPossibleMoves(): array
     {
+        $this->cellPredictionsCollection->reset();
 
+        $collectionOf9Solver = new CollectionOf9CellsSolver($this->cellPredictionsCollection);
+
+        foreach ($this->matrix->getRows() as $row) {
+            $collectionOf9Solver->solve($row);
+        }
+        foreach ($this->matrix->getColumns() as $column) {
+            $collectionOf9Solver->solve($column);
+        }
+        foreach ($this->matrix->getGroups() as $group) {
+            $collectionOf9Solver->solve($group);
+        }
+
+        return $this->cellPredictionsCollection->getPossibleMoves();
+    }
+
+    public function getMove(): ?CellPredictions
+    {
+        // @todo throw dedicated exception
+        $list = $this->buildPossibleMoves();
+        return isset($list[0]) ? $list[0] : null;
+    }
+
+    public function getPredictionsForEmptyCells(): array
+    {
+        $list = $this->cellPredictionsCollection->getPredictionsForEmptyCells();
+        return $list;
+    }
+
+    public function apply(CellPredictions $cellPrediction)
+    {
+        if (!$cellPrediction->hasAnswer()) {
+            return;
+        }
+        $cellPrediction->getCell()->setValue($cellPrediction->getAnswer());
     }
 }

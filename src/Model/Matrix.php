@@ -111,4 +111,38 @@ class Matrix extends CellCollection
     {
         return $this->groups[$index];
     }
+
+    /**
+     * @return array
+     */
+    public function getRows(): array
+    {
+        return $this->rows;
+    }
+
+    /**
+     * @return array
+     */
+    public function getColumns(): array
+    {
+        return $this->columns;
+    }
+
+    /**
+     * @return array
+     */
+    public function getGroups(): array
+    {
+        return $this->groups;
+    }
+
+    public function isSolved()
+    {
+        $allValid = true;
+        /** @var Cell $cell */
+        foreach ($this as $cell) {
+            $allValid = $allValid && $cell->hasValue();
+        }
+        return $allValid;
+    }
 }

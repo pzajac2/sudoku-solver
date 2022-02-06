@@ -65,4 +65,9 @@ class CellPredictions implements CellPredictionInterface
         return $this->getPossibleValues()[0];
     }
 
+    public function getCell(): Cell
+    {
+        return $this->cell;
+    }
+
 }

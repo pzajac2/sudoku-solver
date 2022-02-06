@@ -26,7 +26,7 @@ class CollectionOf9CellsSolverTest extends TestCase
         ];
         $row = new Row($cells);
         $solver = new CollectionOf9CellsSolver();
-        $result = $solver->solve($row);
+        $result = $solver->calculatePossibleMovesForCollection($row);
 
         foreach ($result as $prediction) {
             self::assertTrue($prediction->hasAnswer());
@@ -49,7 +49,7 @@ class CollectionOf9CellsSolverTest extends TestCase
             new Cell(1),
         ];
         $row = new Row($cells);
-        $cellPredictionsFactory = new CellPredictionsFactory();
+        $cellPredictionsFactory = new CellPredictionsCollection();
         $solver = new CollectionOf9CellsSolver($cellPredictionsFactory);
         $solver->solve($row);
 
@@ -96,7 +96,7 @@ class CollectionOf9CellsSolverTest extends TestCase
         ];
         $column = new Column($columnCells);
 
-        $cellPredictionsFactory = new CellPredictionsFactory();
+        $cellPredictionsFactory = new CellPredictionsCollection();
 
         $solver = new CollectionOf9CellsSolver($cellPredictionsFactory);
         $solver->solve($row);

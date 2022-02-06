@@ -69,4 +69,12 @@ class SudokuReader implements \Countable
         $buffer = $this->puzzles[$id];
         return MatrixFactory::createFromString($buffer);
     }
+
+    public function getPuzzleString(int $id): string
+    {
+        if (!isset($this->puzzles[$id])) {
+            throw new \OutOfBoundsException();
+        }
+        return $this->puzzles[$id];
+    }
 }
