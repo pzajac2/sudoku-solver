@@ -34,11 +34,27 @@ class Solver
         foreach ($this->matrix->getRows() as $row) {
             $collectionOf9Solver->solve($row);
         }
+        if ($this->cellPredictionsCollection->getPossibleMoves() !== []) {
+            return $this->cellPredictionsCollection->getPossibleMoves();
+        }
+
         foreach ($this->matrix->getColumns() as $column) {
             $collectionOf9Solver->solve($column);
         }
+        if ($this->cellPredictionsCollection->getPossibleMoves() !== []) {
+            return $this->cellPredictionsCollection->getPossibleMoves();
+        }
+
         foreach ($this->matrix->getGroups() as $group) {
             $collectionOf9Solver->solve($group);
+        }
+        if ($this->cellPredictionsCollection->getPossibleMoves() !== []) {
+            return $this->cellPredictionsCollection->getPossibleMoves();
+        }
+
+        $neighborCollectionSolver = new NeighborCollectionOf9Solver($this->cellPredictionsCollection);
+        foreach ($this->matrix as $cell) {
+            $neighborCollectionSolver->solve($this->matrix, $cell);
         }
 
         return $this->cellPredictionsCollection->getPossibleMoves();

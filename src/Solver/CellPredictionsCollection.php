@@ -38,10 +38,10 @@ class CellPredictionsCollection
     {
         $possibleMoves = [];
         $list = $this->getPredictionsForEmptyCells();
-        foreach ($list as $instance) {
-            $newAnswer = !$instance->isSolved() && $instance->hasAnswer();
+        foreach ($list as $prediction) {
+            $newAnswer = !$prediction->isSolved() && $prediction->hasAnswer();
             if ($newAnswer) {
-                $possibleMoves[] = $instance;
+                $possibleMoves[] = $prediction;
             }
         }
         return $possibleMoves;
@@ -52,8 +52,9 @@ class CellPredictionsCollection
      */
     public function getPredictionsForEmptyCells()
     {
-        return array_filter($this->instances, function (CellPredictions $cell) {
-            return (!$cell->getCell()->hasValue());
+        $list = array_filter($this->instances, function (CellPredictions $prediction) {
+            return !$prediction->getCell()->hasValue() && $prediction->getPossibleValues() !== [];
         });
+        return $list;
     }
 }

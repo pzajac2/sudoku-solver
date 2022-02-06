@@ -41,6 +41,15 @@ abstract class CellCollection implements \Iterator
         return $this->cells[$index];
     }
 
+    public function __toString(): string
+    {
+        $out = '';
+        for ($i=0;$i<static::TOTAL_ELEMENTS;++$i) {
+            $out .= $this->cells[$i]->getValue() ?? ' ';
+        }
+        return $out;
+    }
+
     public function current(): mixed
     {
         return $this->cells[$this->pointer];

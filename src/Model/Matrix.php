@@ -136,6 +136,21 @@ class Matrix extends CellCollection
         return $this->groups;
     }
 
+    /**
+     * @return array Two integers with Cell position [x, y]
+     */
+    public function getCellPosition(Cell $cell): array
+    {
+        foreach ($this as $id => $matrixCell) {
+            if ($matrixCell === $cell) {
+                $x = $id % 9;
+                $y = (int)floor($id / 9);
+                return [$x, $y];
+            }
+        }
+        throw new \InvalidArgumentException();
+    }
+
     public function isSolved()
     {
         $allValid = true;

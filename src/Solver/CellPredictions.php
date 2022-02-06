@@ -41,7 +41,7 @@ class CellPredictions implements CellPredictionInterface
             return [$this->cell->getValue()];
         }
 
-        $allowedValues = [1,2,3,4,5,6,7,8,9];
+        $allowedValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         foreach ($this->possibilities as $possibility) {
             $possibleValues = $possibility->getValues();
             $newAllowedValues = [];

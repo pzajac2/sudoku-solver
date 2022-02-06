@@ -18,9 +18,6 @@ class CollectionOf9CellsSolver
         $this->cellPredictionsCollection = $cellPredictionsCollection;
     }
 
-    /**
-     * @return CellPredictionInterface[]
-     */
     public function solve(CollectionOf9Cells $cellCollection): void
     {
         $usedNumbers = [];
