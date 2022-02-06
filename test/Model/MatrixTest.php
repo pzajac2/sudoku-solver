@@ -8,7 +8,9 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use SudokuSolver\Model\Cell;
 use SudokuSolver\Model\CellType;
+use SudokuSolver\Model\Column;
 use SudokuSolver\Model\Matrix;
+use SudokuSolver\Model\Row;
 
 class MatrixTest extends TestCase
 {
@@ -122,6 +124,73 @@ class MatrixTest extends TestCase
                 self::assertSame($x+1, $matrix->getCell($x, $y)->getValue());
             }
         }
+    }
+
+    public function testMatrixHasValidRows()
+    {
+        $cells = [];
+        for ($i = 0; $i < 81; ++$i) {
+            $cells[] = new Cell($i % 9 + 1);
+        }
+        $matrix = new Matrix($cells);
+
+        for ($y=0; $y<9; ++$y) {
+            $row = $matrix->getRow($y);
+            $this->assertInstanceOf(Row::Class, $row);
+            for ($x = 0; $x < 9; ++$x) {
+                $this->assertEquals($x + 1, $row->getCellByIndex($x)->getValue());
+                $this->assertSame($matrix->getCell($x, $y), $row->getCellByIndex($x));
+            }
+        }
+    }
+
+    public function testMatrixHasValidColumns()
+    {
+        $cells = [];
+        for ($i = 0; $i < 81; ++$i) {
+            $cells[] = new Cell($i % 9 + 1);
+        }
+        $matrix = new Matrix($cells);
+
+        for ($x = 0; $x < 9; ++$x) {
+            $column = $matrix->getColumn($x);
+            $this->assertInstanceOf(Column::Class, $column);
+            for ($y=0; $y<9; ++$y) {
+                $this->assertEquals($x + 1, $column->getCellByIndex($y)->getValue());
+                $this->assertSame($matrix->getCell($x, $y), $column->getCellByIndex($y));
+            }
+        }
+    }
+
+    public function testMatrixHasValidGroups()
+    {
+        $cells = [];
+        for ($i = 0; $i < 81; ++$i) {
+            $cells[] = new Cell($i % 9 + 1);
+        }
+        $matrix = new Matrix($cells);
+
+        $group = $matrix->getGroup(0);
+
+        $this->assertSame($matrix->getCell(0, 0), $group->getCellByIndex(0));
+        $this->assertSame($matrix->getCell(1, 0), $group->getCellByIndex(1));
+        $this->assertSame($matrix->getCell(2, 0), $group->getCellByIndex(2));
+        $this->assertSame($matrix->getCell(0, 1), $group->getCellByIndex(3));
+        $this->assertSame($matrix->getCell(1, 1), $group->getCellByIndex(4));
+        $this->assertSame($matrix->getCell(2, 1), $group->getCellByIndex(5));
+        $this->assertSame($matrix->getCell(0, 2), $group->getCellByIndex(6));
+        $this->assertSame($matrix->getCell(1, 2), $group->getCellByIndex(7));
+        $this->assertSame($matrix->getCell(2, 2), $group->getCellByIndex(8));
+
+        $this->assertSame($matrix->getCell(0, 0), $group->getCell(0, 0));
+        $this->assertSame($matrix->getCell(1, 0), $group->getCell(1, 0));
+        $this->assertSame($matrix->getCell(2, 0), $group->getCell(2, 0));
+        $this->assertSame($matrix->getCell(0, 1), $group->getCell(0, 1));
+        $this->assertSame($matrix->getCell(1, 1), $group->getCell(1, 1));
+        $this->assertSame($matrix->getCell(2, 1), $group->getCell(2, 1));
+        $this->assertSame($matrix->getCell(0, 2), $group->getCell(0, 2));
+        $this->assertSame($matrix->getCell(1, 2), $group->getCell(1, 2));
+        $this->assertSame($matrix->getCell(2, 2), $group->getCell(2, 2));
     }
 
     public function testToStringCase01()

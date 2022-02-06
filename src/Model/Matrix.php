@@ -12,6 +12,20 @@ class Matrix extends CellCollection
 
     protected const TOTAL_ELEMENTS = 81;
 
+    private array $rows;
+
+    private array $columns;
+
+    private array $groups;
+
+    public function __construct(array $cells = [])
+    {
+        parent::__construct($cells);
+        $this->prepareRows();
+        $this->prepareColumns();
+        $this->prepareGroups();
+    }
+
     public function getCell(int $x, int $y): Cell
     {
         Assert::range($x, 0, 8, 'X coordinate must be between 0..8');
@@ -28,5 +42,73 @@ class Matrix extends CellCollection
             $output .= ($i && $i % self::SIZE == 0 ? "\n" : '') . $this->cells[$i];
         }
         return $output;
+    }
+
+    private function prepareRows()
+    {
+        for ($y = 0; $y < static::SIZE; ++$y) {
+            $cells = [];
+            for ($x = 0; $x < static::SIZE; ++$x) {
+                $cells[] = $this->getCell($x, $y);
+            }
+            $this->rows[$y] = new Row($cells);
+
+            // back reference
+            for ($x = 0; $x < static::SIZE; ++$x) {
+                $this->rows[$y]->getCellByIndex($x)->setRow($this->rows[$y]);
+            }
+        }
+    }
+
+    private function prepareColumns()
+    {
+        for ($x = 0; $x < static::SIZE; ++$x) {
+            $cells = [];
+            for ($y = 0; $y < static::SIZE; ++$y) {
+                $cells[] = $this->getCell($x, $y);
+            }
+            $this->columns[$x] = new Column($cells);
+
+            // back reference
+            for ($y = 0; $y < static::SIZE; ++$y) {
+                $this->columns[$x]->getCellByIndex($y)->setColumn($this->columns[$x]);
+            }
+        }
+    }
+
+    private function prepareGroups()
+    {
+        $groups = [];
+        for ($y = 0; $y < static::SIZE; ++$y) {
+            for ($x = 0; $x < static::SIZE; ++$x) {
+                $groupId = (int)(floor($x / 3) + 3 * floor($y / 3));
+                if (!isset($groups[$groupId])) {
+                    $groups[$groupId] = [];
+                }
+                $groups[$groupId][] = $this->getCell($x, $y);
+            }
+        }
+        for ($i = 0; $i < 9; ++$i) {
+            $this->groups[$i] = new Group($groups[$i]);
+
+            for ($j = 0; $j < static::SIZE; ++$j) {
+                $this->groups[$i]->getCellByIndex($j)->setGroup($this->groups[$i]);
+            }
+        }
+    }
+
+    public function getRow(int $index): Row
+    {
+        return $this->rows[$index];
+    }
+
+    public function getColumn(int $index): Column
+    {
+        return $this->columns[$index];
+    }
+
+    public function getGroup(int $index): Group
+    {
+        return $this->groups[$index];
     }
 }

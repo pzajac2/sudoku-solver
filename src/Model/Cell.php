@@ -10,6 +10,12 @@ class Cell
 
     private CellType $type;
 
+    private Row $row;
+
+    private Column $column;
+
+    private Group $group;
+
     public function __construct(?int $value = null)
     {
         $this->setValue($value);
@@ -42,5 +48,53 @@ class Cell
     public function __toString(): string
     {
         return $this->value !== null ? (string)$this->value : ' ';
+    }
+
+    /**
+     * @return Row
+     */
+    public function getRow(): Row
+    {
+        return $this->row;
+    }
+
+    /**
+     * @param Row $row
+     */
+    public function setRow(Row $row): void
+    {
+        $this->row = $row;
+    }
+
+    /**
+     * @return Column
+     */
+    public function getColumn(): Column
+    {
+        return $this->column;
+    }
+
+    /**
+     * @param Column $column
+     */
+    public function setColumn(Column $column): void
+    {
+        $this->column = $column;
+    }
+
+    /**
+     * @return Group
+     */
+    public function getGroup(): Group
+    {
+        return $this->group;
+    }
+
+    /**
+     * @param Group $group
+     */
+    public function setGroup(Group $group): void
+    {
+        $this->group = $group;
     }
 }
