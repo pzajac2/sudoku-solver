@@ -57,8 +57,16 @@ class NeighborCollectionOf9Solver
 
         $canGuessByColumn = $c1v && $c2v;
         if ($canGuessByColumn) {
-            $possibleValuesCols2 = $this->getPossibleValuesFromNeighborCollections($columns);
-            $cellPredictions->addPossibilities($possibleValuesCols2);
+            $alreadyAdded = $cellPredictions->getPossibleValues();
+            $possibleValuesCols2 = [];
+            foreach ($this->getPossibleValuesFromNeighborCollections($columns) as $v) {
+                if (in_array($v, $alreadyAdded)) {
+                    $possibleValuesCols2[] = $v;
+                }
+            }
+            if ($possibleValuesCols2) {
+                $cellPredictions->addPossibilities($possibleValuesCols2);
+            }
         }
 
         // for row - take two others cells
@@ -69,8 +77,16 @@ class NeighborCollectionOf9Solver
 
         $canGuessByRow = $c1v && $c2v;
         if ($canGuessByRow) {
-            $possibleValuesRows2 = $this->getPossibleValuesFromNeighborCollections($rows);
-            $cellPredictions->addPossibilities($possibleValuesRows2);
+            $alreadyAdded = $cellPredictions->getPossibleValues();
+            $possibleValuesRows2 = [];
+            foreach ($this->getPossibleValuesFromNeighborCollections($rows) as $v) {
+                if (in_array($v, $alreadyAdded)) {
+                    $possibleValuesRows2[] = $v;
+                }
+            }
+            if ($possibleValuesRows2 !== []) {
+                $cellPredictions->addPossibilities($possibleValuesRows2);
+            }
         }
     }
 

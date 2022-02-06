@@ -52,10 +52,18 @@ class Solver
             return $this->cellPredictionsCollection->getPossibleMoves();
         }
 
-        $neighborCollectionSolver = new NeighborCollectionOf9Solver($this->cellPredictionsCollection);
+        $excludingPredictionsSolver = new \SudokuSolver\Solver\ExcludingPredictionsSolver($this->cellPredictionsCollection);
         foreach ($this->matrix as $cell) {
-            $neighborCollectionSolver->solve($this->matrix, $cell);
+            $excludingPredictionsSolver->solve($this->matrix, $cell);
         }
+        if ($this->cellPredictionsCollection->getPossibleMoves() !== []) {
+            return $this->cellPredictionsCollection->getPossibleMoves();
+        }
+
+//        $neighborCollectionSolver = new NeighborCollectionOf9Solver($this->cellPredictionsCollection);
+//        foreach ($this->matrix as $cell) {
+//            $neighborCollectionSolver->solve($this->matrix, $cell);
+//        }
 
         return $this->cellPredictionsCollection->getPossibleMoves();
     }

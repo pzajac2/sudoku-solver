@@ -20,19 +20,24 @@ class SolverTest extends TestCase
      */
     public function testSolveSudoku(string $puzzle)
     {
-        $this->markTestIncomplete('Not all puzzles can be solved by now');
+//        $this->markTestIncomplete('Not all puzzles can be solved by now');
         $matrix = MatrixFactory::createFromString($puzzle);
 
         echo MatrixPrinter::printFriendly($matrix);
 
         $solver = new Solver($matrix);
-
+        $step = 0;
         do {
+            ++$step;
+            echo "\n";
+            echo "Step #$step\n";
             if (!$move = $solver->getMove()) {
+                echo "Unbreakable...\n";
                 $predictions = $solver->getPredictionsForEmptyCells();
                 foreach ($predictions as $prediction) {
                     $this->printPrediction($matrix, $prediction);
                 }
+                echo MatrixPrinter::printFriendly($matrix);
                 break;
             }
             echo str_repeat('~', 60) . "\n\n";
@@ -58,9 +63,9 @@ class SolverTest extends TestCase
     {
         foreach ($matrix as $id => $matrixCell) {
             if ($matrixCell === $move->getCell()) {
-                $x = $id % 9 + 1;
-                $y = (int)floor($id / 9) + 1;
-                echo "(i) Possible values for Cell at $x, $y are:\n";
+                $x = $id % 9;
+                $y = (int)floor($id / 9) ;
+                echo "(i) Possible values for Cell at row $y col $x are: ";
                 echo implode(", ", $move->getPossibleValues()) . "\n";
                 break;
             }
