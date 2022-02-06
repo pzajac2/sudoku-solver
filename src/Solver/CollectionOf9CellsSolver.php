@@ -11,10 +11,17 @@ use SudokuSolver\Model\CollectionOf9Cells;
  */
 class CollectionOf9CellsSolver
 {
+    private CellPredictionsFactory $cellPredictionsFactory;
+
+    public function __construct(CellPredictionsFactory $cellPredictionsFactory)
+    {
+        $this->cellPredictionsFactory = $cellPredictionsFactory;
+    }
+
     /**
-     * @return CellPrediction[]
+     * @return CellPredictionInterface[]
      */
-    public function solve(CollectionOf9Cells $cellCollection): array
+    public function solve(CollectionOf9Cells $cellCollection): void
     {
         for ($i=0; $i<9; ++$i) {
             $cell = $cellCollection->getCellByIndex($i);
@@ -27,15 +34,15 @@ class CollectionOf9CellsSolver
             $usedNumbers
         );
 
-        $result = [];
         for ($i=0; $i<9; ++$i) {
             $cell = $cellCollection->getCellByIndex($i);
+            $cellPredictions = $this->cellPredictionsFactory->get($cell);
+
             if ($cell->hasValue()) {
-                $result[$i] = new CertainCellValue($cell->getValue());
+                $cellPredictions->addPossibilities([$cell->getValue()]);
             } else {
-                $result[$i] = new PossibleCellValues($possibleValues);
+                $cellPredictions->addPossibilities($possibleValues);
             }
         }
-        return $result;
     }
 }
