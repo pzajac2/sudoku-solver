@@ -34,6 +34,9 @@ class Cell
 
     public function setValue(?int $value): void
     {
+        if ($value === 0) {
+            $value = null;
+        }
         if ($value !== null && !($value >= 1 && $value <= 9)) {
             throw new \InvalidArgumentException('Cell value must be null or between 0..9');
         }
