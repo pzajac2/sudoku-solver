@@ -16,7 +16,7 @@ class Puzzle
     public function __construct(string $definition)
     {
         Assert::length($definition, 81);
-        Assert::regex($definition, '/^[.\-_0-9]{81}/');
+        Assert::regex($definition, '/^[.\-_ 0-9]{81}/');
 
         for ($i=0, $im=strlen($definition); $i<$im;++$i) {
             if (in_array($definition[$i], [' ', '-', '.', '_'])) {

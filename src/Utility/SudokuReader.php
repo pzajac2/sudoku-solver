@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace SudokuSolver\Utility;
 
-use SudokuSolver\DomainModel\Matrix;
-use SudokuSolver\Factory\MatrixFactory;
+use SudokuSolver\Model\Puzzle;
 
 class SudokuReader implements \Countable
 {
-    const VALID_CHAR = '/^[ \.0-9]$/';
-    const VALID_LINE = '/[ \.0-9]{9}/';
+    const VALID_CHAR = '/^[ .\-_0-9]$/';
+    const VALID_LINE = '/^[ .\-_0-9]{1}/';
+
     private array $puzzles = [];
 
     public function __construct()
@@ -39,8 +39,7 @@ class SudokuReader implements \Countable
         $buffer = '';
         foreach ($lines as $line)
         {
-            $valid = preg_match(self::VALID_LINE, $line);
-            if (!$valid) {
+            if (!$valid = preg_match(self::VALID_LINE, $line)) {
                 continue;
             }
 
@@ -48,13 +47,14 @@ class SudokuReader implements \Countable
                 if (!preg_match(self::VALID_CHAR, $line[$i])) {
                     continue;
                 }
-                $buffer .= $line[$i];
+                $buffer .= is_numeric($line[$i]) ? $line[$i] : '0';
+
+                if (strlen($buffer) == 81) {
+                    $subject->addPuzzle($buffer);
+                    $buffer = '';
+                }
             }
 
-            if (strlen($buffer) == 81) {
-                $subject->addPuzzle($buffer);
-                $buffer = '';
-            }
         }
         return $subject;
     }
@@ -64,13 +64,13 @@ class SudokuReader implements \Countable
         return count($this->puzzles);
     }
 
-    public function getPuzzle(int $id): Matrix
+    public function getPuzzle(int $id): Puzzle
     {
         if (!isset($this->puzzles[$id])) {
             throw new \OutOfBoundsException();
         }
         $buffer = $this->puzzles[$id];
-        return MatrixFactory::createFromString($buffer);
+        return new Puzzle($buffer);
     }
 
     public function getPuzzleString(int $id): string
