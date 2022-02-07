@@ -41,7 +41,30 @@ class GridIterator
 
     public static function groups(GridInterface $grid): \Generator
     {
-        // @todo
-        yield [];
+        for ($i = 0; $i < 9; ++$i) {
+            yield $i => static::cellsInGroup($grid, $i);
+        }
+    }
+
+    public static function cellsInGroup(GridInterface $grid, int $id): \Generator
+    {
+        $offsets = [
+            [0, 0],
+            [3, 0],
+            [6, 0],
+            [0, 3],
+            [3, 3],
+            [6, 3],
+            [0, 6],
+            [3, 6],
+            [6, 6],
+        ];
+        [$offsetX, $offsetY] = $offsets[$id];
+
+        for ($y = 0; $y < 3; ++$y) {
+            for ($x = 0; $x < 3; ++$x) {
+                yield [$offsetX + $x, $offsetY + $y] => $grid->getValue($offsetX + $x, $offsetY + $y);
+            }
+        }
     }
 }

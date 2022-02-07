@@ -6,7 +6,7 @@ namespace SudokuSolver\IntegrationTest;
 
 use SudokuSolver\Exception\UnbreakablePuzzleException;
 use SudokuSolver\Solver\FullSolver;
-use SudokuSolver\Strategy\DomainModelStrategy;
+use SudokuSolver\Strategy\ClassicStrategy;
 use SudokuSolver\Utility\SudokuReader;
 
 class ResolvingTest extends \PHPUnit\Framework\TestCase
@@ -66,7 +66,8 @@ class ResolvingTest extends \PHPUnit\Framework\TestCase
      */
     private function solvePuzzle(\SudokuSolver\Model\Puzzle $puzzle): bool
     {
-        $strategy = new DomainModelStrategy($puzzle);
+//        $strategy = new DomainModelStrategy();
+        $strategy = new ClassicStrategy();
         $solver = new FullSolver($strategy, $puzzle);
 
         try {
