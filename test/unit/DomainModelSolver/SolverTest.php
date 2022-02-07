@@ -20,7 +20,7 @@ class SolverTest extends TestCase
      */
     public function testSolveSudoku(string $puzzle)
     {
-        $this->markTestIncomplete('To be removed');
+//        $this->markTestIncomplete('To be removed');
         $matrix = MatrixFactory::createFromString($puzzle);
 
         echo MatrixPrinter::printFriendly($matrix);

@@ -52,10 +52,10 @@ class Solver
             return $this->cellPredictionsCollection->getPossibleMoves();
         }
 
-        $neighborCollectionSolver = new NeighborCollectionOf9Solver($this->cellPredictionsCollection);
-        foreach ($this->matrix as $cell) {
-            $neighborCollectionSolver->solve($this->matrix, $cell);
-        }
+//        $neighborCollectionSolver = new NeighborCollectionOf9Solver($this->cellPredictionsCollection);
+//        foreach ($this->matrix as $cell) {
+//            $neighborCollectionSolver->solve($this->matrix, $cell);
+//        }
 
         return $this->cellPredictionsCollection->getPossibleMoves();
     }
