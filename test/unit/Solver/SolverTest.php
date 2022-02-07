@@ -48,8 +48,7 @@ class SolverTest extends TestCase
 
     public function getPuzzles()
     {
-        $this->markTestIncomplete('todo: refactor (filenames will change)');
-        $loader = SudokuReader::loadFromFile(__DIR__ . '/../Resource/puzzles-01.sudoku');
+        $loader = SudokuReader::loadFromFile(__DIR__ . '/../../integration/Resource/puzzles-01.sudoku');
         for ($i = 0, $im = count($loader); $i < $im; ++$i) {
             yield [$loader->getPuzzleString($i)];
         }
