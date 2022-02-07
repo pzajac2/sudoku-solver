@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SudokuSolver\UnitTest\Solver;
+namespace SudokuSolver\UnitTest\DomainModelSolver;
 
 use PHPUnit\Framework\TestCase;
+use SudokuSolver\DomainModelSolver\CellPredictionsCollection;
 use SudokuSolver\Factory\MatrixFactory;
-use SudokuSolver\Solver\CellPredictionsCollection;
 
 class NeighborCollectionOf9SolverTest extends TestCase
 {
@@ -26,7 +26,7 @@ DATA;
         $matrix = MatrixFactory::createFromString($puzzle);
 
         $predictionsCollection = new CellPredictionsCollection();
-        $solver = new \SudokuSolver\Solver\NeighborCollectionOf9Solver($predictionsCollection);
+        $solver = new \SudokuSolver\DomainModelSolver\NeighborCollectionOf9Solver($predictionsCollection);
         $testedCell = $matrix->getCell(4, 6);
 
         $solver->solve($matrix, $testedCell);

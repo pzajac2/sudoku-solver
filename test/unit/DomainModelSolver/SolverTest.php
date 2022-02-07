@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SudokuSolver\UnitTest\Solver;
+namespace SudokuSolver\UnitTest\DomainModelSolver;
 
 use PHPUnit\Framework\TestCase;
 use SudokuSolver\DomainModel\Matrix;
+use SudokuSolver\DomainModelSolver\Solver;
 use SudokuSolver\Factory\MatrixFactory;
-use SudokuSolver\Solver\Solver;
 use SudokuSolver\Utility\MatrixPrinter;
 use SudokuSolver\Utility\SudokuReader;
 
@@ -54,7 +54,7 @@ class SolverTest extends TestCase
         }
     }
 
-    private function printPrediction(Matrix $matrix, \SudokuSolver\Solver\CellPredictions $move)
+    private function printPrediction(Matrix $matrix, \SudokuSolver\DomainModelSolver\CellPredictions $move)
     {
         foreach ($matrix as $id => $matrixCell) {
             if ($matrixCell === $move->getCell()) {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SudokuSolver\Solver;
+namespace SudokuSolver\DomainModelSolver;
 
 class PossibilitiesCollection implements \ArrayAccess, \Iterator
 {

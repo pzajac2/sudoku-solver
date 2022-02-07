@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace SudokuSolver\Solver;
+namespace SudokuSolver\UnitTest\DomainModelSolver;
 
 use PHPUnit\Framework\TestCase;
 use SudokuSolver\DomainModel\Cell;
 use SudokuSolver\DomainModel\Column;
 use SudokuSolver\DomainModel\Row;
+use SudokuSolver\DomainModelSolver\CellPredictionsCollection;
+use SudokuSolver\DomainModelSolver\CollectionOf9CellsSolver;
 
 class CollectionOf9CellsSolverTest extends TestCase
 {
