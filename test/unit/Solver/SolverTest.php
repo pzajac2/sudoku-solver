@@ -20,7 +20,7 @@ class SolverTest extends TestCase
      */
     public function testSolveSudoku(string $puzzle)
     {
-        $this->markTestIncomplete('Not all puzzles can be solved by now');
+        $this->markTestIncomplete('To be removed');
         $matrix = MatrixFactory::createFromString($puzzle);
 
         echo MatrixPrinter::printFriendly($matrix);
@@ -48,6 +48,7 @@ class SolverTest extends TestCase
 
     public function getPuzzles()
     {
+        $this->markTestIncomplete('todo: refactor (filenames will change)');
         $loader = SudokuReader::loadFromFile(__DIR__ . '/../Resource/puzzles-01.sudoku');
         for ($i = 0, $im = count($loader); $i < $im; ++$i) {
             yield [$loader->getPuzzleString($i)];

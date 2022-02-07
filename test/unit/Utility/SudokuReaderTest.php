@@ -12,6 +12,7 @@ class SudokuReaderTest extends TestCase
 {
     public function testLoad01()
     {
+        $this->markTestIncomplete('todo: refactor');
         $filename = __DIR__ . '/../Resource/puzzles-01.sudoku';
         $reader = SudokuReader::loadFromFile($filename);
         $count = count($reader);
@@ -36,6 +37,7 @@ DATA;
 
     public function testLoad02()
     {
+        $this->markTestIncomplete('todo: refactor');
         $filename = __DIR__ . '/../Resource/puzzles-02.sudoku';
         $reader = SudokuReader::loadFromFile($filename);
         $count = count($reader);

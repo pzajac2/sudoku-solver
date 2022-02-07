@@ -20,8 +20,11 @@
             "SudokuSolver\\": [
                 "src/"
             ],
-            "SudokuSolver\\Test\\": [
-                "test/"
+            "SudokuSolver\\UnitTest\\": [
+                "test/unit/"
+            ],
+            "SudokuSolver\\IntegrationTest\\": [
+                "test/integration/"
             ]
         }
     },

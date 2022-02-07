@@ -24,6 +24,9 @@ class SudokuReader implements \Countable
 
     public static function loadFromFile(string $filename): static
     {
+        if (!file_exists($filename)) {
+            throw new \InvalidArgumentException("File $filename doesn't exists");
+        }
         $contents = file_get_contents($filename);
         return static::loadFromString($contents);
     }
