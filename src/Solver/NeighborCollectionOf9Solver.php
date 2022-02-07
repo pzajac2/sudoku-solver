@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SudokuSolver\Solver;
 
-use SudokuSolver\Model\Cell;
-use SudokuSolver\Model\Column;
-use SudokuSolver\Model\Matrix;
-use SudokuSolver\Model\Row;
+use SudokuSolver\DomainModel\Cell;
+use SudokuSolver\DomainModel\Column;
+use SudokuSolver\DomainModel\Matrix;
+use SudokuSolver\DomainModel\Row;
 
 class NeighborCollectionOf9Solver
 {

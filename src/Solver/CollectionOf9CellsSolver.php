@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SudokuSolver\Solver;
 
-use SudokuSolver\Model\CollectionOf9Cells;
+use SudokuSolver\DomainModel\CollectionOf9Cells;
 
 /**
  * Finds possible values for each cell of 9 elements collection

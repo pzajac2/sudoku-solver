@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SudokuSolver\Solver;
 
-use SudokuSolver\Model\Matrix;
+use SudokuSolver\DomainModel\Matrix;
 
 class Solver
 {

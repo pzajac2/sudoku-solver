@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SudokuSolver\Test\Solver;
 
 use PHPUnit\Framework\TestCase;
+use SudokuSolver\DomainModel\Matrix;
 use SudokuSolver\Factory\MatrixFactory;
-use SudokuSolver\Model\Matrix;
 use SudokuSolver\Solver\Solver;
 use SudokuSolver\Utility\MatrixPrinter;
 use SudokuSolver\Utility\SudokuReader;

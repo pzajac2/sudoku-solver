@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace SudokuSolver\Test\Model;
+namespace SudokuSolver\Test\DomainModel;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use SudokuSolver\Model\Cell;
-use SudokuSolver\Model\CellType;
-use SudokuSolver\Model\Column;
-use SudokuSolver\Model\Matrix;
-use SudokuSolver\Model\Row;
+use SudokuSolver\DomainModel\Cell;
+use SudokuSolver\DomainModel\CellType;
+use SudokuSolver\DomainModel\Column;
+use SudokuSolver\DomainModel\Matrix;
+use SudokuSolver\DomainModel\Row;
 
 class MatrixTest extends TestCase
 {

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SudokuSolver\Test\Utility;
 
 use PHPUnit\Framework\TestCase;
-use SudokuSolver\Model\Matrix;
+use SudokuSolver\DomainModel\Matrix;
 use SudokuSolver\Utility\SudokuReader;
 
 class SudokuReaderTest extends TestCase

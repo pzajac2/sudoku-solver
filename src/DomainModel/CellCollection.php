@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SudokuSolver\Model;
+namespace SudokuSolver\DomainModel;
 
 use SudokuSolver\Utility\ObjectUniqueness;
 use Webmozart\Assert\Assert;

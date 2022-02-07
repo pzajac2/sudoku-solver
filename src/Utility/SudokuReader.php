@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SudokuSolver\Utility;
 
+use SudokuSolver\DomainModel\Matrix;
 use SudokuSolver\Factory\MatrixFactory;
-use SudokuSolver\Model\Matrix;
 
 class SudokuReader implements \Countable
 {

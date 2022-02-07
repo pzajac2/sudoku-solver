@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SudokuSolver\Solver;
 
-use SudokuSolver\Model\Cell;
+use SudokuSolver\DomainModel\Cell;
 
 /**
  * List possible predictions for each cell

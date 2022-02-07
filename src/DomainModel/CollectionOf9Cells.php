@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SudokuSolver\Model;
+namespace SudokuSolver\DomainModel;
 
 interface CollectionOf9Cells
 {

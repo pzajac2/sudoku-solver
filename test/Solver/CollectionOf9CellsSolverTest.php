@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SudokuSolver\Solver;
 
 use PHPUnit\Framework\TestCase;
-use SudokuSolver\Model\Cell;
-use SudokuSolver\Model\Column;
-use SudokuSolver\Model\Row;
+use SudokuSolver\DomainModel\Cell;
+use SudokuSolver\DomainModel\Column;
+use SudokuSolver\DomainModel\Row;
 
 class CollectionOf9CellsSolverTest extends TestCase
 {

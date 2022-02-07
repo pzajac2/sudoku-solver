@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SudokuSolver\Model;
+namespace SudokuSolver\DomainModel;
 
 class Row extends CellCollection implements CollectionOf9Cells
 {

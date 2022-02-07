@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SudokuSolver\Test\Model;
+namespace SudokuSolver\Test\DomainModel;
 
-use SudokuSolver\Model\Group;
+use SudokuSolver\DomainModel\Group;
 
 class GroupTest extends CellCollectionTest
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SudokuSolver\Test\Model;
+namespace SudokuSolver\Test\DomainModel;
 
 use PHPUnit\Framework\TestCase;
-use SudokuSolver\Model\Cell;
-use SudokuSolver\Model\CellType;
+use SudokuSolver\DomainModel\Cell;
+use SudokuSolver\DomainModel\CellType;
 
 class CellTest extends TestCase
 {

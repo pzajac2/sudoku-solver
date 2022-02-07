@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SudokuSolver\Test\Utility;
 
 use PHPUnit\Framework\TestCase;
-use SudokuSolver\Model\Cell;
-use SudokuSolver\Model\Matrix;
+use SudokuSolver\DomainModel\Cell;
+use SudokuSolver\DomainModel\Matrix;
 use SudokuSolver\Utility\MatrixPrinter;
 
 class MatrixPrinterTest extends TestCase
