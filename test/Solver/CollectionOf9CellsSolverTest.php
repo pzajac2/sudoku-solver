@@ -25,13 +25,17 @@ class CollectionOf9CellsSolverTest extends TestCase
             new Cell(),
         ];
         $row = new Row($cells);
-        $solver = new CollectionOf9CellsSolver();
-        $result = $solver->calculatePossibleMovesForCollection($row);
+        $cellPredictionsCollection = new CellPredictionsCollection();
+        $solver = new CollectionOf9CellsSolver($cellPredictionsCollection);
 
-        foreach ($result as $prediction) {
+        $solver->solve($row);
+
+        foreach ($row as $rowCell) {
+            $prediction = $cellPredictionsCollection->get($rowCell);
             self::assertTrue($prediction->hasAnswer());
         }
-        self::assertEquals(9, $result[8]->getAnswer());
+
+        self::assertEquals(9, $cellPredictionsCollection->get($row->getCellByIndex(8))->getAnswer());
     }
 
     public function testSolveWithTwoMissingNumbers()

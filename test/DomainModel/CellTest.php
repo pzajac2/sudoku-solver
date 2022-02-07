@@ -45,6 +45,8 @@ class CellTest extends TestCase
     {
         $cell = new Cell();
         $cell->setValue($value);
+
+        $value = $value ?: null; // 0 -> null
         self::assertInstanceOf(Cell::class, $cell);
         self::assertSame($value !== null, $cell->hasValue());
         self::assertSame($value, $cell->getValue());
@@ -68,7 +70,6 @@ class CellTest extends TestCase
     public function getInvalidCellValues(): array
     {
         return [
-            [0],
             [-1],
             [10],
             ['a'],
@@ -89,7 +90,8 @@ class CellTest extends TestCase
     public function getNullCellValues(): array
     {
         return [
-            [null]
+            [null],
+            [0]
         ];
     }
 }

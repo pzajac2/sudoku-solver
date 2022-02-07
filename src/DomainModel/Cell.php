@@ -19,7 +19,7 @@ class Cell
     public function __construct(?int $value = null)
     {
         $this->setValue($value);
-        $this->type = $value !== null ? CellType::FIXED : CellType::USER;
+        $this->type = $this->getValue() !== null ? CellType::FIXED : CellType::USER;
     }
 
     public function hasValue(): bool
