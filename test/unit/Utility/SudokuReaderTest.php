@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SudokuSolver\Test\Utility;
+namespace SudokuSolver\UnitTest\Utility;
 
 use PHPUnit\Framework\TestCase;
 use SudokuSolver\DomainModel\Matrix;
@@ -12,8 +12,7 @@ class SudokuReaderTest extends TestCase
 {
     public function testLoad01()
     {
-        $this->markTestIncomplete('todo: refactor');
-        $filename = __DIR__ . '/../Resource/puzzles-01.sudoku';
+        $filename = __DIR__ . '/../Resource/file-01-one-line.sudoku';
         $reader = SudokuReader::loadFromFile($filename);
         $count = count($reader);
         $this->assertEquals(50, $count);
@@ -58,5 +57,20 @@ DATA;
 DATA;
 
         $this->assertSame($expected, (string)$matrix);
+    }
+
+    public function getTestFiles()
+    {
+        return [
+            [__DIR__ . '/../Resource/file-01.sudoku'],
+            [__DIR__ . '/../Resource/file-02.sudoku'],
+            [__DIR__ . '/../Resource/file-03.sudoku'],
+            [__DIR__ . '/../Resource/file-01-one-line.sudoku'],
+            [__DIR__ . '/../Resource/file-02-one-line.sudoku'],
+            [__DIR__ . '/../Resource/file-03-one-line.sudoku'],
+            [__DIR__ . '/../Resource/file-01-splited-line.sudoku'],
+            [__DIR__ . '/../Resource/file-02-splited-line.sudoku'],
+            [__DIR__ . '/../Resource/file-03-splited-line.sudoku'],
+        ];
     }
 }

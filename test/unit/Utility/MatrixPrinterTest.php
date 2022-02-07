@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SudokuSolver\Test\Utility;
+namespace SudokuSolver\UnitTest\Utility;
 
 use PHPUnit\Framework\TestCase;
 use SudokuSolver\DomainModel\Cell;
